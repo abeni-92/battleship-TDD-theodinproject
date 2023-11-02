@@ -8,7 +8,6 @@
   "name": "battelship",
   "version": "1.0.0",
   "main": "index.js",
- 
   "scripts": {
     "test": "jest"
   },

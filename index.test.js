@@ -162,9 +162,11 @@ describe('Gameboard Module', () => {
     testBoard.placeShip(testShip4, 0, 3, true);
     testBoard.placeShip(testShip5, 0, 4, true);
     expect(testBoard.recieveAttack(0, 0)).toBe('Hit Shot');
+    expect(testBoard.recieveAttack(0, 0)).toBe(false);
     expect(testBoard.recieveAttack(1, 0)).toBe('Hit Shot');
     expect(testBoard.recieveAttack(1, 1)).toBe('Hit Shot');
     expect(testBoard.recieveAttack(4, 6)).toBe('Missed Shot');
+    expect(testBoard.recieveAttack(4, 6)).toBe(false);
   })
   test('missed shot', () => {
     testBoard.placeShip(testShip1, 0, 0, true);
@@ -172,12 +174,8 @@ describe('Gameboard Module', () => {
   })
 
   // gameOver Method
-  test('checking if the game is over by making hitshots 17', () => {
-    testBoard.hitShots.length = 17;
-    expect(testBoard.isGameOver()).toBe(true);
-  })
   test('check gameover  1', () => {
-    expect(testBoard.isGameOver(ships)).toBe(false);
+    expect(testBoard.isGameOver()).toBe(false);
   })
   test('check gameover 2', () => {
     testBoard.placeShip(testShip1, 0, 0, true);
@@ -185,33 +183,43 @@ describe('Gameboard Module', () => {
     testBoard.placeShip(testShip3, 0, 2, true);
     testBoard.placeShip(testShip4, 0, 3, true);
     testBoard.placeShip(testShip5, 0, 4, true);
-    testShip1.hit(0, 0)
-    expect(testBoard.isGameOver(ships)).toBe(false);
+    testBoard.recieveAttack(0, 0)
+	testBoard.recieveAttack(1, 0)
+    expect(testBoard.isGameOver()).toBe(false);
   })
-  test('check gameover 2', () => {
+  test('check gameover 3', () => {
+    testBoard.placeShip(testShip5, 0, 0, true);
+    testBoard.placeShip(testShip5, 0, 1, true);
+	testBoard.recieveAttack(0,0)
+	testBoard.recieveAttack(1,0)
+	testBoard.recieveAttack(0,1)
+	testBoard.recieveAttack(1,1)
+    expect(testBoard.isGameOver()).toBe(true);
+  });
+  test('check gameover 4', () => {
     testBoard.placeShip(testShip1, 0, 0, true);
     testBoard.placeShip(testShip2, 0, 1, true);
     testBoard.placeShip(testShip3, 0, 2, true);
     testBoard.placeShip(testShip4, 0, 3, true);
     testBoard.placeShip(testShip5, 0, 4, true);
-    testShip1.hit(0, 0)
-    testShip1.hit(1, 0)
-    testShip1.hit(2, 0)
-    testShip1.hit(3, 0)
-    testShip1.hit(4, 0)
-    testShip2.hit(0, 1)
-    testShip2.hit(1, 1)
-    testShip2.hit(2, 1)
-    testShip2.hit(3, 1)
-    testShip3.hit(0, 2)
-    testShip3.hit(1, 2)
-    testShip3.hit(2, 2)
-    testShip4.hit(0, 3)
-    testShip4.hit(1, 3)
-    testShip4.hit(2, 3)
-    testShip5.hit(0, 4)
-    testShip5.hit(1, 4)
-    expect(testBoard.isGameOver(ships)).toBe(true);
+    testBoard.recieveAttack(0, 0)
+    testBoard.recieveAttack(1, 0)
+    testBoard.recieveAttack(2, 0)
+    testBoard.recieveAttack(3, 0)
+    testBoard.recieveAttack(4, 0)
+    testBoard.recieveAttack(0, 1)
+    testBoard.recieveAttack(1, 1)
+    testBoard.recieveAttack(2, 1)
+    testBoard.recieveAttack(3, 1)
+    testBoard.recieveAttack(0, 2)
+    testBoard.recieveAttack(1, 2)
+    testBoard.recieveAttack(2, 2)
+    testBoard.recieveAttack(0, 3)
+    testBoard.recieveAttack(1, 3)
+    testBoard.recieveAttack(2, 3)
+    testBoard.recieveAttack(0, 4)
+    testBoard.recieveAttack(1, 4)
+    expect(testBoard.isGameOver()).toBe(true);
   })
 })
 
@@ -222,11 +230,35 @@ describe('Player Module', () => {
     player1 = new Player('Player 1');
     player2 = new Player('Player 2');
   })
+
   test('test for intializing Player', () => {
     expect(new Player('Abebe').name).toBe('Abebe');
   })
   test('test for attack', () => {
     expect(player1.attack (-1, 0, player2.gameBoard)).toBe(false);
-    expect(player1.attack (0, 0, player2.gameBoard)).toBe();
+    expect(player1.attack (0, 0, player2.gameBoard)).toBe('Attacked');
+    expect(player1.attack (0, 0, player2.gameBoard)).toBe(false);
   })
 })
+
+// describe('first', () => { 
+// 	let player1, player2;
+// 	beforeEach(() => {
+// 		player1 = new Player('Player 1');
+// 		player2 = new Player('Player 2');
+// 		player1.gameBoard.placeShip(0, 0);
+// 		player2.gameBoard.placeShip(0, 1);
+// 	  })
+// 	test('game flow', () => {
+// 		let board1 = player1.gameBoard;
+// 		let board2 = player2.gameBoard;
+// 		while (!board1.isGameOver() && !board2.isGameOver()) {
+// 			player1.randomAttack(player2.gameBoard);
+// 			player2.randomAttack(player1.gameBoard);
+
+// 			console.log(player1, player2)
+// 		}
+// 		return player1.gameBoard.hitShits;
+	  
+// 	})
+//  })
