@@ -112,7 +112,7 @@ class Gameboard {
 	recieveAttack (x, y) {
 	  if (x < 0 || y < 0 || x >= SIZE || y >= SIZE) return false;
   
-	  if (this.missedShots[x][y]) return false;
+	  if (this.missedShots[x][y] || this.hitShots.some(coord => coord[0] == x && coord[1] == y)) return false;
   
 	  if (this.board[x][y] === null) {
 		this.missedShots[x][y] = true;

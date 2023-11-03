@@ -1,5 +1,5 @@
 
-const gameLoop = require('./gamelogic');
+const gameLoop = require('./src/gamelogic');
 
 gameLoop();
 

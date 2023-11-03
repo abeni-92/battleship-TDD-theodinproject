@@ -1,3 +1,6 @@
+
+const SIZE = 10;
+
 class Ship {
 	constructor(length, name) {
 	  this.name = name;
