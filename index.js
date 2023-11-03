@@ -9,8 +9,7 @@ class Ship {
   }
 
   hit (x, y) {
-    if (x < 0 || y < 0 || x >= SIZE || y >= SIZE || this.hits.some(coord => coord[0] === x && coord[1] === y))  return false
-
+    if (x < 0 || y < 0 || x >= SIZE || y >= SIZE || this.hits.includes([x, y])) return false
     this.hits.push([x, y]);
     return true
   }
@@ -59,8 +58,7 @@ class Gameboard {
     }
 
     this.ships.push(sh);
-	console.log(this.ships);
-	// console.table(this.board);
+	
     return true
   }
 
