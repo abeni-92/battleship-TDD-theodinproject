@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="../dist/output.css">
+		<script src="../index.js" defer></script>
+	</head>
+	<body>
+		<main class="bg-slate-700 w-full h-screen p-6 flex flex-col items-center justify-center space-y-12 text-white relative">
+			<div class="flex flex-col items-center gap-6">
+				<h1 class="font-extrabold text-9xl animate-pulse">BATTLESHIP</h1>
+				<i class="fa-solid fa-volume-high text-2xl cursor-pointer"></i>
+			</div>
+			<div class="flex flex-col justify-between items-center gap-12">
+				<input type="text" name="player-name" id="player-name" placeholder="Your Name..." class="px-4 py-2 border-none outline-none text-gray-600 placeholder:text-gray-600 text-lg focus:outline-1">
+				<p class="hidden">Your Name is Required!</p>
+				<button class="bg-slate-50 text-slate-900 font-bold text-3xl p-4 hover:font-extrabold">START GAME</button>
+			</div>
+			<footer class="bg-gray-800 text-white absolute bottom-0 left-0 right-0 flex justify-center items-center p-6 gap-4">
+				<a href="https://github.com/abeni-92/battleship-TDD-theodinproject" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github text-2xl hover:scale-125"></i></a>
+				<p>Created by Abenezer Tesfaye for <a href="#" target="_blank" class="hover:font-bold">The Odin Project (opens on new page)</a></p>
+			</footer>
+		</main>
+	</body>
+</html>
