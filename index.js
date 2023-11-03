@@ -54,12 +54,13 @@ class Gameboard {
     } else {
         for (let i = 0; i < ship.length; i++) {
           this.board[row][col + i] = ship.name;
-          sh.push([row, col + 1]);
+          sh.push([row, col + i]);
         }
     }
 
     this.ships.push(sh);
-	
+	console.log(this.ships);
+	// console.table(this.board);
     return true
   }
 
@@ -84,27 +85,66 @@ class Gameboard {
       }
     }
 
+	// if (isVertical) {
+	// 	for (let i = 0; i < ship.length; i++) {
+	// 	  for (let x = -1; x <= 1; x++) {
+	// 		for (let y = -1; y <= 1; y++) {
+	// 		  if (
+	// 			row + x + i < 0 ||
+	// 			row + x + i >= SIZE ||
+	// 			col + y < 0 ||
+	// 			col + y >= SIZE
+	// 		  )
+	// 			continue
+	// 		  if (this.board[row + x + i][col + y]) return false
+	// 		}
+	// 	  }
+	// 	}
+	//   } else {
+	// 	for (let i = 0; i < ship.length; i++) {
+	// 	  for (let x = -1; x <= 1; x++) {
+	// 		for (let y = -1; y <= 1; y++) {
+	// 		  if (
+	// 			row + x < 0 ||
+	// 			row + x >= SIZE ||
+	// 			col + y + i < 0 ||
+	// 			col + y + i >= SIZE
+	// 		  )
+	// 			continue
+	// 		  if (this.board[row + x][col + y + i]) return false
+	// 		}
+	// 	  }
+	// 	}
+	//   }
+
     return true;
   }
 
   randomPlaceship() {
 	let ship1 = new Ship(5, 'Computer');
-
-	// this.ships.push(ship1);
-	console.log(this.ships);
-
-	const row = Math.floor(Math.random() * 10);
-	const col = Math.floor(Math.random() * 10);
+	
+	let row, col;
 	const isVertical = Math.floor(Math.random() * 2) === 1 ? true : false;	
 
+	if (isVertical) {
+		// Generate a random row and ensure the ship fits within the boundaries
+		row = Math.floor(Math.random() * (SIZE - ship1.length + 1));
+		col = Math.floor(Math.random() * SIZE);
+	  } else {
+		// Generate a random column and ensure the ship fits within the boundaries
+		row = Math.floor(Math.random() * SIZE);
+		col = Math.floor(Math.random() * (SIZE - ship1.length + 1));
+	  }
+	
 	let successfulPlacement = 0;
-
+	
 	while (successfulPlacement < 1) {
 		if (this.placeShip(ship1, row, col, isVertical)) {
 			successfulPlacement += 1;
 		}
 	}
-
+	
+	// console.log(this.ships);
   }
 
   recieveAttack (x, y) {
@@ -137,7 +177,7 @@ class Gameboard {
 	if (this.ships.length === 0) return false;
 
 	for (let i = 0; i < this.ships.length; i++) {
-		let sh = this.ships[i];
+		let sh = this.ships[i]; 
 		for (let item of sh) {
 			if (!this.hitShots.some(coord => coord[0] === item[0] && coord[1] === item[1])) {
 				return false;
@@ -217,7 +257,7 @@ const readline = require('readline').createInterface({
 const player1 = new Player('Player 1');
 const player2 = new Player('Player 2');
 
-let ship1 = new Ship(5);
+let ship1 = new Ship(5, 'Player1');
 
 let board1 = player1.gameBoard;
 let board2 = player2.gameBoard;
