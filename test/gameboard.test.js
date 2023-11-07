@@ -1,5 +1,7 @@
-const Gameboard = require('../src/gameboard');
-const Ship = require('../src/ship');
+import Gameboard from '../src/gameboard';
+import Ship from '../src/ship';
+// const Gameboard = require('../src/gameboard');
+// const Ship = require('../src/ship');
 
 describe('Gameboard Module', () => {
 	let testBoard, ships = [];

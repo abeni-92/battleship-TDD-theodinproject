@@ -1,4 +1,5 @@
-const Player = require('../src/player');
+import Player from '../src/player';
+// const Player = require('../src/player');
 
 describe('Player Module', () => {
 	let player1, player2;

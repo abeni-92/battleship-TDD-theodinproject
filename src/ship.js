@@ -19,4 +19,8 @@ class Ship {
 	}
   }
 
-module.exports = Ship 
+  // browser env't
+export default Ship 
+
+// node env't
+// module.exports = Ship

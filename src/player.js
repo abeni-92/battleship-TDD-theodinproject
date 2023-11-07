@@ -1,4 +1,8 @@
-const Gameboard = require('./gameboard');
+// browser env't
+import Gameboard from './gameboard.js';
+
+// node env't
+// const Gameboard = require('./gameboard');
 
 class Player {
 	constructor (name) {
@@ -43,6 +47,8 @@ class Player {
   
   }
 
-//   module.exports = Player;
-module.exports = Player 
-// export default Player
+// browser env't  
+export default Player
+
+// node env't
+// module.exports = Player 
