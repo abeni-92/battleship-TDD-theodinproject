@@ -25,7 +25,7 @@ class Player {
 	  console.log(x, y)
 	  return x, y;
 	}
-	// the input gameboard should be the other players game board
+	// the input gameboard should be the other players gameboard
 	attack (x, y, gameboard) {
 	  if (this.alreadyHit(x, y) || gameboard.isOutOfBoundary(x, y)) return false;
   

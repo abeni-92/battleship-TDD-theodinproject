@@ -60,3 +60,6 @@
 
 // // node env't
 // // module.exports = gameLogic;
+
+import index from '../index.js';
+

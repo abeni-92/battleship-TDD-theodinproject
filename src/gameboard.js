@@ -43,6 +43,7 @@ export class Gameboard {
 	  }
   
 	  this.ships.push(sh);
+	//   console.log(this.ships)
 	  return true
 	}
   
@@ -109,7 +110,9 @@ export class Gameboard {
 
 		  this.placeShip(s, row, col, isVertical)
 		}
-		  console.log(this.ships);
+
+		// console.log(this.ships);
+		return this.ships
 	  }  
   
 	recieveAttack (x, y) {
@@ -119,9 +122,11 @@ export class Gameboard {
   
 	  if (this.board[x][y] === null) {
 		this.missedShots[x][y] = true;
+		console.log('missed')
 		return 'Missed Shot';
 	  } else {
-		  this.hitShots.push([x,y]);
+		  this.hitShots.push([x, y]);
+		  console.log('hit')
 		  return 'Hit Shot';
 	  }
   
@@ -129,11 +134,13 @@ export class Gameboard {
   
 	isGameOver () {
 	  if (this.ships.length === 0) return false;
+
+	  if (this.hitShots.length === 17) return true;
   
 	  for (let i = 0; i < this.ships.length; i++) {
 		  let sh = this.ships[i]; 
 		  for (let item of sh) {
-			  if (!this.hitShots.some(coord => coord[0] === item[0] && coord[1] === item[1])) {
+			  if (!(this.hitShots.some(coord => coord[0] === item[0] && coord[1] === item[1]))) {
 				  return false;
 			  } 
 		  }
@@ -145,157 +152,6 @@ export class Gameboard {
 	isOutOfBoundary (x, y) {
 	  return x < 0 || y < 0 || x >= SIZE || y >= SIZE ? true : false;
 	}
-	
-	// landingUI () {
-	// 	return `
-	// 		<div class="flex flex-col justify-between items-center gap-12">
-	// 			<input type="text" name="player-name" id="player-name" placeholder="Your Name..." class="px-4 py-2 border-none outline-none text-gray-600 placeholder:text-gray-600 text-lg focus:outline-1">
-	// 			<p class="hidden error text-2xl text-red-500">Your Name is Required!</p>
-	// 			<button id="start" class="bg-slate-50 text-slate-900 font-bold text-3xl p-4 hover:font-extrabold">START GAME</button>
-	// 		</div>
-	// 	`
-	// }
-
-	// gameboardUI () {
-	// 	return `
-	// 		<div class="text-center p-6 mx-auto">
-	// 			<h2 class="text-xl my-2"><span id="player-name">ASD, </span>Place Your Ship <span id="ship-number">1</span></h2>
-	// 			<button id="axis-btn" class="text-2xl px-4 py-2 bg-gray-600 hover:text-green-600">AXIS - <span id="axis">X</span></button>
-	// 		</div>
-			
-	// 		<div class="grid grid-cols-10 gap-1">
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="0"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="0"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="0"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="0"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="0"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="0"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="0"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="0"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="0"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="0"></div>
-				
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="1"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="1"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="1"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="1"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="1"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="1"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="1"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="1"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="1"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="1"></div>
-				
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="2"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="2"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="2"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="2"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="2"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="2"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="2"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="2"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="2"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="2"></div>
-				
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="3"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="3"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="3"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="3"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="3"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="3"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="3"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="3"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="3"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="3"></div>
-				
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="4"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="4"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="4"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="4"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="4"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="4"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="4"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="4"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="4"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="4"></div>
-				
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="5"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="5"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="5"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="5"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="5"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="5"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="5"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="5"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="5"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="5"></div>
-				
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="6"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="6"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="6"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="6"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="6"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="6"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="6"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="6"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="6"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="6"></div>
-								
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="7"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="7"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="7"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="7"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="7"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="7"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="7"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="7"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="7"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="7"></div>
-				
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="8"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="8"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="8"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="8"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="8"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="8"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="8"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="8"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="8"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="8"></div>
-				
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="9"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="9"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="9"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="9"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="9"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="9"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="9"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="9"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="9"></div>
-	// 			<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="9"></div>
-	// 		</div>
-	// 	`;
-	
-	// }
-
-	// handleAxis () {
-
-	// 	let board = document.createElement('div');
-	// 	board.innerHTML = this.gameboardUI();
-		
-	// 	const axisBtn = board.querySelector("#axis-btn");
-	// 	const axis = board.querySelector("#axis");
-
-	// 	axisBtn.addEventListener("click", () => {
-	// 		if (axis.textContent === 'X') {
-	// 			axis.textContent = 'Y'
-	// 			isVertical = true;
-	// 		} else {
-	// 			axis.textContent = 'X'
-	// 			isVertical = false
-	// 		}
-	// 	})
-	// }
   
 	getEmptyField () {
 	  let result = 0;
