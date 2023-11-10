@@ -1,4 +1,4 @@
-import Player from '../src/player';
+import Player from '../src/player.js';
 // const Player = require('../src/player');
 
 describe('Player Module', () => {

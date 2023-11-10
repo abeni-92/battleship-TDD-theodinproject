@@ -1,5 +1,5 @@
-import Gameboard from '../src/gameboard';
-import Ship from '../src/ship';
+import Gameboard from '../src/gameboard.js';
+import Ship from '../src/ship.js';
 // const Gameboard = require('../src/gameboard');
 // const Ship = require('../src/ship');
 

@@ -22,8 +22,8 @@ class Player {
 	  }
 	  this.alreadyHitPositions.push([x, y]);
 	  gameboard.recieveAttack(x, y);
-	  console.log(x, y)
-	  return x, y;
+	//   console.log(x, y)
+	  return [x, y];
 	}
 	// the input gameboard should be the other players gameboard
 	attack (x, y, gameboard) {
@@ -31,8 +31,8 @@ class Player {
   
 	  this.alreadyHitPositions.push([x, y]);
 	  gameboard.recieveAttack(x, y);
-	  console.log(x, y);
-	  return 'Attacked'
+	//   console.log(x, y);
+	  return [x, y]
 	  // return x, y;
 	}
   

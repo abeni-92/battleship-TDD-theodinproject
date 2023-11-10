@@ -11,7 +11,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-	"start": "node -r @babel/register index.js"
+	"start": "node -r @babel/register index.js",
+	"build-tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },
   "author": "",
   "license": "ISC",

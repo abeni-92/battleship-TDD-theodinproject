@@ -111,7 +111,6 @@ export class Gameboard {
 		  this.placeShip(s, row, col, isVertical)
 		}
 
-		// console.log(this.ships);
 		return this.ships
 	  }  
   
@@ -122,11 +121,11 @@ export class Gameboard {
   
 	  if (this.board[x][y] === null) {
 		this.missedShots[x][y] = true;
-		console.log('missed')
+		// console.log('missed')
 		return 'Missed Shot';
 	  } else {
 		  this.hitShots.push([x, y]);
-		  console.log('hit')
+		//   console.log('hit')
 		  return 'Hit Shot';
 	  }
   
@@ -148,24 +147,7 @@ export class Gameboard {
   
 	  return true;
 	}
-  
-	isOutOfBoundary (x, y) {
-	  return x < 0 || y < 0 || x >= SIZE || y >= SIZE ? true : false;
-	}
-  
-	getEmptyField () {
-	  let result = 0;
-	  for (let i = 0; i < SIZE; i++) {
-		for (let j = 0; j < SIZE; j++) {
-		  if (this.board[i][j] == null) {
-			result += 1
-		  }
-		}
-	  }
-	  return result;
-	}
-  
-  }
+}
 
 //  browser env't
 export default Gameboard

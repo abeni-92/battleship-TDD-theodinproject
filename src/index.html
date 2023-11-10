@@ -8,13 +8,13 @@
 		<link rel="stylesheet" href="../dist/output.css">
 		<script src="../index.js" type="module" defer></script>
 	</head>
-	<body>
-		<main id="main" class="bg-slate-700 w-full h-screen p-6 flex flex-col items-center justify-center space-y-12 text-white relative">
+	<body class="animate-fade-in">
+		<main id="home-main" class="bg-slate-700 w-full h-screen p-6 flex flex-col items-center justify-center space-y-12 transition-opacity opacity-100 text-white relative">
 			<div>
 				<h1 class="font-extrabold text-9xl animate-pulse">BATTLESHIP</h1>
 			</div>
 			
-			<div id="main-body" class="flex flex-col justify-between items-center gap-12">
+			<div class="flex flex-col justify-between items-center gap-12">
 				<input type="text" name="player-name" id="player-name" placeholder="Your Name..." class="px-4 py-2 border-none outline-none text-gray-600 placeholder:text-gray-600 text-lg focus:outline-1">
 				<p class="hidden error text-2xl text-red-500">Your Name is Required!</p>
 				<button id="start" class="bg-slate-50 text-slate-900 font-bold text-3xl p-4 hover:font-extrabold">START GAME</button>
@@ -25,5 +25,382 @@
 				<p>Created by <span class="text-green-600">Abenezer Tesfaye</span> for <a href="#" target="_blank" class="hover:font-bold">The Odin Project (opens on new page)</a></p>
 			</footer>
 		</main>
+
+		<main id="gameboard" class="hidden bg-slate-700 w-full h-screen p-6 flex-col items-center justify-start space-y-10 text-white relative">
+			<div class="text-center">
+				<h1 class="font-extrabold text-6xl py-4">BATTLESHIP</h1>
+				<h2 class="text-xl my-2"><span id="display-name"></span>, Place Your Ship <span id="ship-number"></span></h2>
+				<button id="axis-btn" class="text-2xl px-4 py-2 bg-gray-600 hover:text-green-600">AXIS - <span id="axis">X</span></button>
+			</div>
+			
+			<div id="main-body" class="flex flex-col justify-between items-center gap-12">			
+				<div class="grid grid-cols-10 gap-1">
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="0"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="0"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="0"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="0"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="0"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="0"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="0"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="0"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="0"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="0"></div>
+					
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="1"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="1"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="1"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="1"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="1"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="1"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="1"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="1"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="1"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="1"></div>
+					
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="2"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="2"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="2"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="2"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="2"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="2"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="2"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="2"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="2"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="2"></div>
+					
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="3"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="3"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="3"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="3"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="3"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="3"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="3"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="3"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="3"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="3"></div>
+					
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="4"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="4"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="4"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="4"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="4"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="4"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="4"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="4"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="4"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="4"></div>
+					
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="5"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="5"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="5"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="5"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="5"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="5"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="5"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="5"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="5"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="5"></div>
+					
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="6"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="6"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="6"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="6"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="6"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="6"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="6"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="6"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="6"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="6"></div>
+									
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="7"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="7"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="7"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="7"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="7"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="7"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="7"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="7"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="7"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="7"></div>
+					
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="8"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="8"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="8"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="8"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="8"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="8"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="8"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="8"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="8"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="8"></div>
+					
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="9"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="9"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="9"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="9"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="9"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="9"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="9"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="9"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="9"></div>
+					<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="9"></div>
+				</div>
+			</div>
+			
+			<footer class="bg-gray-800 text-white absolute bottom-0 left-0 right-0 flex justify-center items-center p-6 gap-4">
+				<a href="https://github.com/abeni-92/battleship-TDD-theodinproject" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github text-2xl hover:scale-125"></i></a>
+				<p>Created by <span class="text-green-600">Abenezer Tesfaye</span> for <a href="#" target="_blank" class="hover:font-bold">The Odin Project (opens on new page)</a></p>
+			</footer>
+		</main>
+
+		
+		<main id="playboard" class="hidden bg-slate-700 w-full h-screen p-6 flex-col items-center justify-start space-y-6 text-white relative">
+			<div class="text-center">
+				<h1 class="font-extrabold text-6xl py-4">BATTLESHIP</h1>
+				<h2 class="text-3xl text-green-400 turn"></h2>
+			</div>
+			
+			<div class="flex gap-16">
+				<div class="text-center your">
+					<h2 class="text-3xl p-4 font-bold">Your Water</h2>
+					<div class="grid grid-cols-10 gap-1">
+						<div class="p-4 rounded border-2 cursor-crosshair item" data-col="0" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="0"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="1"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="2"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="3"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="4"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="5"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="6"></div>
+										
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="7"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="8"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="9"></div>
+					</div>
+				</div>
+
+				<div class="text-center enemy">
+					<h2 class="text-3xl p-4 font-bold">Enemy Water</h2>
+					<div class="grid grid-cols-10 gap-1">
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="0"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="0"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="1"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="1"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="2"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="2"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="3"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="3"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="4"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="4"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="5"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="5"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="6"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="6"></div>
+										
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="7"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="7"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="8"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="8"></div>
+						
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="0" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="1" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="2" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="3" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="4" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="5" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="6" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="7" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="8" data-row="9"></div>
+						<div class="p-4 rounded border-2 cursor-pointer item" data-col="9" data-row="9"></div>
+					</div>
+				</div>
+			</div>
+			
+			<footer class="bg-gray-800 text-white absolute bottom-0 left-0 right-0 flex justify-center items-center p-6 gap-4">
+				<a href="https://github.com/abeni-92/battleship-TDD-theodinproject" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github text-2xl hover:scale-125"></i></a>
+				<p>Created by <span class="text-green-600">Abenezer Tesfaye</span> for <a href="#" target="_blank" class="hover:font-bold">The Odin Project (opens on new page)</a></p>
+			</footer>
+		</main>
+		
+		<div class="gameover bg-slate-800 hidden h-screen flex-col justify-center items-center">
+			<h1 class="text-8xl py-8 text-gray-100 animate-bounce winner"></h1>
+			<button class="play-again bg-green-800 px-4 py-2 text-2xl font-bold text-gray-200">Play Again</button>
+		</div>
 	</body>
 </html>
