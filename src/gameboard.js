@@ -147,7 +147,11 @@ export class Gameboard {
   
 	  return true;
 	}
-}
+  
+	isOutOfBoundary (x, y) {
+	  return x < 0 || y < 0 || x >= SIZE || y >= SIZE ? true : false;
+	}
+  }
 
 //  browser env't
 export default Gameboard
